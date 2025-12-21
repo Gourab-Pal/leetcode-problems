@@ -10,18 +10,17 @@ class Solution {
         int n = s.length();
         int start = 0;
         int end = 0;
-
         for(int i=0; i<n; i++) {
             int oddLen = expand(s, i, i);
             int evenLen = expand(s, i, i+1);
             int maxLen = Math.max(oddLen, evenLen);
 
-            if(maxLen> (end-start)) {
+            if(maxLen>end-start) {
                 start = i - (maxLen-1)/2;
                 end = i + maxLen/2;
             }
         }
-
         return s.substring(start, end+1);
     }
+    
 }

@@ -3,7 +3,7 @@ class Solution {
         int n = nums.length;
         long maxValue = Long.MIN_VALUE;
 
-        for(int j=1; j<=(n-2); j++) {
+        for(int j=1; j<n; j++) {
             int maxLeft = Integer.MIN_VALUE;
             int maxRight = Integer.MIN_VALUE;
             for(int i=0; i<j; i++) {
@@ -12,14 +12,15 @@ class Solution {
             for(int k=j+1; k<n; k++) {
                 maxRight = Math.max(maxRight, nums[k]);
             }
-
-            long value = (long) (maxLeft - nums[j]) * maxRight;
-            if(value>=0) {
-                maxValue = Math.max(value, maxValue);
+            
+            if(maxLeft != Integer.MIN_VALUE && maxRight != Integer.MIN_VALUE) {
+                long value = (long) (maxLeft - nums[j])*maxRight;
+                maxValue = Math.max(maxValue, value);
             }
         }
 
-        if(maxValue < 0) return 0;
+        if(maxValue<0) return 0;
         return maxValue;
+
     }
 }
